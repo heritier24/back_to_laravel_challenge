@@ -2,22 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employees;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        $employee = Employees::all(['id', 'names', 'gender','phonenumber']);
 
+        return response()->json([
+            'employees' => $employee
+        ], 200);
     }
 
-    public function store(){
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'names' => 'required',
+            'gender' => 'required',
+            'phonenumber' => 'required',
+        ]);
+        $employee = Employees::create([
+            'names' => $request->names,
+            'gender' => $request->gender,
+            'phonenumber' => $request->phonenumber
+        ]);
+        return response()->json([
+            'employee' => $employee
+        ]);
     }
 
-    public function update(){
-
+    public function update()
+    {
     }
-    public function delete(){
-        
+    public function delete()
+    {
     }
 }
