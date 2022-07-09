@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('movement_types', function (Blueprint $table) {
             $table->id();
-            $table->integer('types_id');
-            $table->integer('employee_id');
+            $table->bigInteger('types_id')->unsigned();
+            $table->foreign('types_id')->references('id')->on('types')->onDelete('restrict')->onUpdate('cascade');
+            $table->bigInteger('employee_id')->unsigned();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('restrict')->onUpdate('cascade');
             $table->date("movement_date");
             $table->timestamps();
-
-            $table->foreign('types_id')->references('id')->on('types')->onDelete('restrict')->onUpdate('cascade');
-
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 
