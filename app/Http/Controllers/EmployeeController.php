@@ -10,7 +10,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $employee = Employees::all(['id', 'names', 'gender','phonenumber']);
+        $employee = Employees::all(['id', 'names', 'gender', 'phonenumber']);
 
         return response()->json([
             'employees' => $employee
@@ -34,10 +34,23 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'names' => 'required',
+            'gender' => 'required',
+            'phonenumber' => 'required',
+        ]);
+        $employee = Employees::where('id', $id)->update([
+            'names' => $request->names,
+            'gender' => $request->gender,
+            'phonenumber' => $request->phonenumber
+        ]);
+        return response()->json([
+            'employee' => $employee
+        ], 200);
     }
-    public function delete()
+    public function delete($id)
     {
     }
 }

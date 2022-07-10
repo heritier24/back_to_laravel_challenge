@@ -58,6 +58,20 @@ class EmployeeTest extends TestCase
      }
      /** @test */
      public function user_can_update_employees(){
+        $employee = Employees::create([
+            "names" => "tamba",
+            "gender" => "male",
+            "phonenumber" => "07885575352"
+        ]);
+        $response = $this->putJson("/api/update-employee/{$employee->id}", [
+            "names" => "heritier",
+            "gender" => "female",
+            "phonenumber" => "0789326245",
+        ]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'employee'
+        ])->json();
         
      }
 }
