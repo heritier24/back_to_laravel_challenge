@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\TypesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/employees', [EmployeeController::class, 'index']);
 Route::post('/postemployees', [EmployeeController::class, 'store']);
-Route::put('/upate-employee/{id}', [EmployeeController::class, 'update']);
+Route::put('/update-employee/{id}', [EmployeeController::class, 'update']);
 Route::delete('/delete-employee/{id}', [EmployeeController::class, 'delete']);
+
+Route::post('/post-types', [TypesController::class, 'store']);

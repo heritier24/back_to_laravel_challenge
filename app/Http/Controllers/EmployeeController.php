@@ -52,5 +52,7 @@ class EmployeeController extends Controller
     }
     public function delete($id)
     {
+           $employee = Employees::find($id);
+           $employee->delete();
     }
 }
