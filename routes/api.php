@@ -26,3 +26,4 @@ Route::put('/update-employee/{id}', [EmployeeController::class, 'update']);
 Route::delete('/delete-employee/{id}', [EmployeeController::class, 'delete']);
 
 Route::post('/post-types', [TypesController::class, 'store']);
+Route::get('/types', [TypesController::class, 'index']);
