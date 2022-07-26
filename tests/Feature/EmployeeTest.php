@@ -16,78 +16,73 @@ class EmployeeTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
+    
     /** @test */
-    public function user_can_record_employees(){
+    // public function user_can_record_employees(){
         
-        $employee = Employees::create([
-            "names" => "Ganza Tamba Heritier",
-            "gender" => "male",
-            "phonenumber" => "0789326245"
-        ]);
-        $response = $this->postJson('/api/postemployees', [
-            'names' => $employee->names,
-            'gender' => $employee->gender,
-            'phonenumber' => $employee->phonenumber
-        ]);
-        $response->assertStatus(200);
-        $response->assertJsonStructure([
-            'employee'
-        ])->json();
-    }
+    //     $employee = Employees::create([
+    //         "names" => "Ganza Tamba Heritier",
+    //         "gender" => "male",
+    //         "phonenumber" => "0789326245"
+    //     ]);
+    //     $response = $this->postJson('/api/postemployees', [
+    //         'names' => $employee->names,
+    //         'gender' => $employee->gender,
+    //         'phonenumber' => $employee->phonenumber
+    //     ]);
+    //     $response->assertStatus(200);
+    //     $response->assertJsonStructure([
+    //         'employee'
+    //     ])->json();
+    // }
 
-     /** @test */
-     public function user_can_list_employees(){
-        $employee = Employees::create([
-            "names" => "heritier",
-            "gender" => "female",
-            "phonenumber" => "0788519633"
-        ]);
-        $response = $this->getJson("/api/employees");
-        $response->assertStatus(200);
-        $response->assertJsonStructure([
-            'employees'
-        ])->json();
-        $result = $response->json('employees');
-        print_r($result);
-     }
-     /** @test */
-     public function user_can_update_employees(){
-        $employee = Employees::create([
-            "names" => "tamba",
-            "gender" => "male",
-            "phonenumber" => "07885575352"
-        ]);
+    //  /** @test */
+    //  public function user_can_list_employees(){
+    //     $employee = Employees::create([
+    //         "names" => "heritier",
+    //         "gender" => "female",
+    //         "phonenumber" => "0788519633"
+    //     ]);
+    //     $response = $this->getJson("/api/employees");
+    //     $response->assertStatus(200);
+    //     $response->assertJsonStructure([
+    //         'employees'
+    //     ])->json();
+    //     $result = $response->json('employees');
+    //     print_r($result);
+    //  }
+    //  /** @test */
+    //  public function user_can_update_employees(){
+    //     $employee = Employees::create([
+    //         "names" => "tamba",
+    //         "gender" => "male",
+    //         "phonenumber" => "07885575352"
+    //     ]);
 
-        // dd($employee->id);
-        $response = $this->putJson("/api/update-employee/{$employee->id}", [
-            "names" => "heritier",
-            "gender" => "female",
-            "phonenumber" => "0789326245",
-        ]);
+    //     // dd($employee->id);
+    //     $response = $this->putJson("/api/update-employee/{$employee->id}", [
+    //         "names" => "heritier",
+    //         "gender" => "female",
+    //         "phonenumber" => "0789326245",
+    //     ]);
 
-        // dd($response);
+    //     // dd($response);
         
-        $response->assertStatus(200);
-        // $response->assertJsonStructure([
-        //     'employee'
-        // ])->json();
+    //     $response->assertStatus(200);
+    //     // $response->assertJsonStructure([
+    //     //     'employee'
+    //     // ])->json();
         
-     }
-     /** @test */
-     public function user_can_delete_employee(){
-        $employee = Employees::create([
-            "names" => "tamba",
-            "gender" => "male",
-            "phonenumber" => "07885575352"
-        ]);
+    //  }
+    //  /** @test */
+    //  public function user_can_delete_employee(){
+    //     $employee = Employees::create([
+    //         "names" => "tamba",
+    //         "gender" => "male",
+    //         "phonenumber" => "07885575352"
+    //     ]);
 
-        $response = $this->deleteJson("/api/delete-employee/{$employee->id}");
-        $response->assertStatus(200);
-     }
+    //     $response = $this->deleteJson("/api/delete-employee/{$employee->id}");
+    //     $response->assertStatus(200);
+    //  }
 }

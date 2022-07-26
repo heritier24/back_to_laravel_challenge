@@ -31,7 +31,7 @@ class EmployeeController extends Controller
         ]);
         return response()->json([
             'employee' => $employee
-        ]);
+        ], 201);
     }
 
     public function update(Request $request, $id)
@@ -48,7 +48,7 @@ class EmployeeController extends Controller
         ]);
         return response()->json([
             'employee' => $employee
-        ], 200);
+        ], 201);
     }
     public function delete($id)
     {
